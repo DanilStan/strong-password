@@ -35,13 +35,13 @@ export class PasswordInputComponent implements ControlValueAccessor, OnInit, OnD
   @Input() confirmPassword = false;
   @Output() confirmSuccess = new EventEmitter();
 
-  protected readonly reliability = Reliability;
-public readonly formControlPassword = new FormControl();
-public readonly formControlConfirmPassword = new FormControl();
+  protected readonly Reliability = Reliability;
+  public readonly formControlPassword = new FormControl();
+  public readonly formControlConfirmPassword = new FormControl();
 
-public reliability$: Observable<Reliability>
-public isConfirm$: Observable<Reliability>
-private readonly subscription = new Subscription();
+  public reliability$: Observable<Reliability>
+  public isConfirm$: Observable<Reliability>
+  private readonly subscription = new Subscription();
 
   constructor(public ngControl: NgControl) {
     // Use the `ngControl` to access the related form control.
@@ -49,18 +49,17 @@ private readonly subscription = new Subscription();
     ngControl.valueAccessor = this;
   }
 
-ngOnInit(): void {
-  this.subscription.add(
-    this.formControlPassword.valueChanges.subscribe({
-      next: value => {
-       this.onChange(value);
+  ngOnInit(): void {
+    this.subscription.add(
+      this.formControlPassword.valueChanges.subscribe({
+        next: value => {
+        this.onChange(value);
       }
     })
   );
 
   this.reliability$ = this.formControlPassword.valueChanges.pipe(startWith(this.formControlPassword.value || ''), map(value => {
     const passwordLength = value.toString().trim().length;
-
     if(!passwordLength) {
       return Reliability.NOT_INIT;
     }
@@ -75,10 +74,10 @@ ngOnInit(): void {
 
     if (regexHigh.test(value)) {
       return Reliability.HIGH;
-    } else if(regexMiddle.test(value)){
-  return Reliability.MIDDLE;
-}else if (regexLow.test(value)){
-  return Reliability.LOW;
+    } else if(regexMiddle.test(value)) {
+      return Reliability.MIDDLE;
+    } else if (regexLow.test(value)) {
+    return Reliability.LOW;
 }
 
 return Reliability.NOT_INIT;

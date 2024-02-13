@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.formGroupPassword.valueChanges.subscribe({
       next: values => {
-        console.log(values)
+        console.log(values);
       }
     })
 
