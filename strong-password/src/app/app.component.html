@@ -1,13 +1,9 @@
 <div class="container">
-  <form class="form">
-    <div class="form__container">
-      <label for="password">Password</label>
-      <input type="password" id="password" />
-      <div class="form__line-container">
-        <span class="form__line form__line--one"></span>
-        <span class="form__line form__line--one"></span>
-        <span class="form__line form__line--one"></span>
-      </div>
-    </div>
+  <form class="form" [formGroup]="formGroupPassword">
+    <app-password-input
+      [confirmPassword]="true"
+      formControlName="password"
+      (confirmSuccess)="confirmSuccess($event)"
+    ></app-password-input>
   </form>
 </div>
