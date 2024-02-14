@@ -1,6 +1,7 @@
 <div class="container">
   <form class="form" [formGroup]="formGroupPassword">
     <app-password-input
+      class="app-password"
       [confirmPassword]="true"
       formControlName="password"
       (confirmSuccess)="confirmSuccess($event)"
